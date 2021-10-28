@@ -21,8 +21,11 @@ namespace AddressBookSystem
                             Console.WriteLine();
                             break;
                         case 2:
-                            isExit = true;
+                            AddBookManager.ListPeople();
                             break;
+                        case 3:
+                        isExit = true;
+                        break;
                         default:
                         Console.WriteLine("Please enter valid Input");
                         break;
