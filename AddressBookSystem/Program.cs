@@ -6,7 +6,30 @@ namespace AddressBookSystem
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Address Book");
+            WelcomeMessage.Welcome();
+            bool isExit = false;
+            while (isExit != true)
+            {
+                WelcomeMessage.DisplayMsg();
+                int response = Convert.ToInt32(Console.ReadLine());
+                    Console.Clear();
+
+                    switch (response)
+                    {
+                        case 1:
+                            AddBookManager.AddPerson();
+                            Console.WriteLine();
+                            break;
+                        case 2:
+                            isExit = true;
+                            break;
+                        default:
+                        Console.WriteLine("Please enter valid Input");
+                        break;
+                    }
+
+            }
+
         }
     }
 }
