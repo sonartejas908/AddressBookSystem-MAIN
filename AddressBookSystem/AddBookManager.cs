@@ -38,30 +38,44 @@ namespace AddressBookSystem
 
         public static void AddPerson()
         {
-            Console.WriteLine("\t[Add Contact]");
-            Person person = new Person();
-            Console.Write("-Enter First Name :");
-            person.Fname = Console.ReadLine();
-            Console.Write("-Enter Last Name :");
-            person.Lname = Console.ReadLine();
-            Console.Write("-Enter Address :");
-            person.Address = Console.ReadLine();
-            Console.Write("-Enter City :");
-            person.City = Console.ReadLine();
-            Console.Write("-Enter State :");
-            person.State = Console.ReadLine();
-            Console.Write("-Enter ZipCode :");
-            person.ZipCode = Console.ReadLine();
-            Console.Write("-Enter Phone Number :");
-            person.PhonNumber = Console.ReadLine();
-            Console.Write("-Enter Email :");
-            person.Email = Console.ReadLine();
+            bool flag = false;
+            while (flag != true)
+            {
+                Console.WriteLine("\t[Add Contact]");
+                Person person = new Person();
+                Console.Write("-Enter First Name :");
+                string name = Console.ReadLine();
 
-            People.Add(person);
-            Console.WriteLine("Contact saved successfully....");
-            Console.WriteLine("Press any key to continue.");
-            Console.ReadKey();
-            Console.Clear();
+                if (People.Any(x => x.Fname.ToLower() == name.ToLower()))
+                {
+                    Console.WriteLine("{0} Already Exists..Try Another One.", name);
+                }
+                else
+                {
+                    flag = true;
+                    person.Fname = name;
+                    Console.Write("-Enter Last Name :");
+                    person.Lname = Console.ReadLine();
+                    Console.Write("-Enter Address :");
+                    person.Address = Console.ReadLine();
+                    Console.Write("-Enter City :");
+                    person.City = Console.ReadLine();
+                    Console.Write("-Enter State :");
+                    person.State = Console.ReadLine();
+                    Console.Write("-Enter ZipCode :");
+                    person.ZipCode = Console.ReadLine();
+                    Console.Write("-Enter Phone Number :");
+                    person.PhonNumber = Console.ReadLine();
+                    Console.Write("-Enter Email :");
+                    person.Email = Console.ReadLine();
+
+                    People.Add(person);
+                    Console.WriteLine("Contact saved successfully....");
+                    Console.WriteLine("Press any key to continue.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }
 
 
         }
