@@ -30,15 +30,18 @@ namespace AddressBookSystem
                             AddBookManager.RemovePerson();
                             break;
                         case 5:
-                            AddBookManager.AddMultipleContact();
+                            AddBookManager.SearchContactByCityorState();
                             break;
                         case 6:
-                        AddBookManager.AddAddressBook();
+                            AddBookManager.AddMultipleContact();
                             break;
                         case 7:
-                        AddBookManager.DisplayAddressBook();
+                        AddBookManager.AddAddressBook();
                             break;
                         case 8:
+                        AddBookManager.DisplayAddressBook();
+                            break;
+                        case 9:
                             isExit = true;
                             break;
                         default:

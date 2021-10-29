@@ -21,10 +21,11 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 2 to List Contact");
             Console.WriteLine(" -Press 3 to Edit Contact");
             Console.WriteLine(" -Press 4 to Delete Contact");
-            Console.WriteLine(" -Press 5 to Add Multiple Contact");
-            Console.WriteLine(" -Press 6 to Add Address Book");
-            Console.WriteLine(" -Press 7 to Display Address Book");
-            Console.WriteLine(" -Press 8 to Exit");
+            Console.WriteLine(" -Press 5 to Search Contact");
+            Console.WriteLine(" -Press 6 to Add Multiple Contact");
+            Console.WriteLine(" -Press 7 to Add Address Book");
+            Console.WriteLine(" -Press 8 to Display Address Book");
+            Console.WriteLine(" -Press 9 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -89,6 +90,7 @@ namespace AddressBookSystem
             Console.WriteLine("Zip Code :" + person.ZipCode);
             Console.WriteLine("Phone Number :" + person.PhonNumber);
             Console.WriteLine("Email :" + person.Email);
+            Console.WriteLine("-------------------------------------");
         }
         public static void ListPeople()
         {
@@ -261,6 +263,37 @@ namespace AddressBookSystem
                 Console.Clear();
                 
             }
+        }
+        public static void SearchContactByCityorState()
+        {
+            Console.Write("Please enter 1  for City 2 for State :");
+            int response = Convert.ToInt32(Console.ReadLine());
+            if(response == 1)
+            {
+                Console.Write("Enter City Name :");
+                string city = Console.ReadLine();
+                foreach(Person person in People.FindAll(e =>e.City.ToLower() == city.ToLower()))
+                {
+                    PrintPerson(person);
+
+                }
+
+            }
+            else
+            {
+                Console.Write("Enter State Name :");
+                string state = Console.ReadLine();
+                foreach (Person person in People.FindAll(e => e.State.ToLower() == state.ToLower()))
+                {
+                    PrintPerson(person);
+
+                }
+
+            }
+            Console.WriteLine("Press any key to continue..");
+            Console.ReadKey();
+            Console.Clear();
+                
         }
     }
 }
