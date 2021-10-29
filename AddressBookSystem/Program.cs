@@ -24,11 +24,14 @@ namespace AddressBookSystem
                             AddBookManager.ListPeople();
                             break;
                         case 3:
-                        isExit = true;
-                        break;
+                            AddBookManager.Editperson();
+                            break;
+                        case 4:
+                            isExit = true;
+                            break;
                         default:
                         Console.WriteLine("Please enter valid Input");
-                        break;
+                            break;
                     }
 
             }

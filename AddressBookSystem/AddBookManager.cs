@@ -18,8 +18,9 @@ namespace AddressBookSystem
         {
             Console.WriteLine("\t---MAIN-WINDOW---\n\n  [Please Select]");
             Console.WriteLine(" -Press 1 to Add Contact");
-            Console.WriteLine(" -Press 2 to List People");
-            Console.WriteLine(" -Press 3 to Exit");
+            Console.WriteLine(" -Press 2 to List Contact");
+            Console.WriteLine(" -Press 3 to Edit Contact");
+            Console.WriteLine(" -Press 4 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -91,7 +92,80 @@ namespace AddressBookSystem
             Console.Clear();
 
         }
+        public static void Editperson()
+        {
+            Console.WriteLine("\t[Edit Contact]");
+            Console.WriteLine("Enter the First name of person you wants to Edit");
+            string firstName = Console.ReadLine();
+            Person person = People.FirstOrDefault(x => x.Fname.ToLower() == firstName.ToLower());
 
+            if (person == null)
+            {
+                Console.WriteLine("Person could not be found. press any key to continue");
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Contact Found");
+                Console.WriteLine("-------------------------------------");
+                PrintPerson(person);
+                Console.WriteLine("-------------------------------------");
+                Console.WriteLine("Press 1 to change First Name");
+                Console.WriteLine("Press 2 to change Last Name");
+                Console.WriteLine("Press 3 to change Address");
+                Console.WriteLine("Press 4 to change City");
+                Console.WriteLine("Press 5 to change State");
+                Console.WriteLine("Press 6 to change ZipCode");
+                Console.WriteLine("Press 7 to change Phone Number");
+                Console.WriteLine("Press 8 to change Email");
+                Console.Write("Enter Choise :");
+                int response = int.Parse(Console.ReadLine());
+
+                switch (response)
+                {
+                    case 1:
+                        Console.Write("Please Enter new Name :");
+                        person.Fname = Console.ReadLine();
+                        break;
+                    case 2:
+                        Console.Write("Please Enter new Last Name :");
+                        person.Lname = Console.ReadLine();
+                        break;
+                    case 3:
+                        Console.Write("Please Enter New Address :");
+                        person.Address = Console.ReadLine();
+                        break;
+                    case 4:
+                        Console.Write("Please Enter new City :");
+                        person.City = Console.ReadLine();
+                        break;
+                    case 5:
+                        Console.Write("Please Enter new State :");
+                        person.State = Console.ReadLine();
+                        break;
+                    case 6:
+                        Console.Write("Please Enter new Zip Code :");
+                        person.ZipCode = Console.ReadLine();
+                        break;
+                    case 7:
+                        Console.Write("Please Enter new Phone Number :");
+                        person.PhonNumber = Console.ReadLine();
+                        break;
+                    case 8:
+                        Console.Write("Please Enter new Email :");
+                        person.Email = Console.ReadLine();
+                        break;
+                }
+                Console.WriteLine("Contact edited Successfully.........");
+                Console.WriteLine("Press any Key to continue.");
+                Console.ReadKey();
+                Console.Clear();
+
+            }
+
+        }
     }
 }
 
