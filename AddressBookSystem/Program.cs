@@ -27,6 +27,9 @@ namespace AddressBookSystem
                             AddBookManager.Editperson();
                             break;
                         case 4:
+                            AddBookManager.RemovePerson();
+                            break;
+                        case 5:
                             isExit = true;
                             break;
                         default:

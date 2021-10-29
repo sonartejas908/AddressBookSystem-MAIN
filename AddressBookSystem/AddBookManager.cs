@@ -20,7 +20,8 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 1 to Add Contact");
             Console.WriteLine(" -Press 2 to List Contact");
             Console.WriteLine(" -Press 3 to Edit Contact");
-            Console.WriteLine(" -Press 4 to Exit");
+            Console.WriteLine(" -Press 4 to Delete Contact");
+            Console.WriteLine(" -Press 5 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -163,6 +164,35 @@ namespace AddressBookSystem
                 Console.ReadKey();
                 Console.Clear();
 
+            }
+
+        }
+        public static void RemovePerson()
+        {
+            Console.WriteLine("\t[Remove Contact]");
+            Console.WriteLine("Enter the First name of person you wants to remove");
+            string firstName = Console.ReadLine();
+            Person person = People.FirstOrDefault(x => x.Fname.ToLower() == firstName.ToLower());
+
+            if (person == null)
+            {
+                Console.WriteLine("Person could not be found. press any key to continue");
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+            else
+            {
+                PrintPerson(person);
+                Console.WriteLine("Are you sure you want to remove this person? (Y/N) ");
+
+                if (Console.ReadKey().Key == ConsoleKey.Y)
+                {
+                    People.Remove(person);
+                    Console.WriteLine("Person removed. Press any key to continue");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
             }
 
         }
