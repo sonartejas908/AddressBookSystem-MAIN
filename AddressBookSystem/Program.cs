@@ -31,8 +31,14 @@ namespace AddressBookSystem
                             break;
                         case 5:
                             AddBookManager.AddMultipleContact();
-                        break;
+                            break;
                         case 6:
+                        AddBookManager.AddAddressBook();
+                            break;
+                        case 7:
+                        AddBookManager.DisplayAddressBook();
+                            break;
+                        case 8:
                             isExit = true;
                             break;
                         default:

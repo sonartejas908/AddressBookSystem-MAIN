@@ -22,7 +22,9 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 3 to Edit Contact");
             Console.WriteLine(" -Press 4 to Delete Contact");
             Console.WriteLine(" -Press 5 to Add Multiple Contact");
-            Console.WriteLine(" -Press 6 to Exit");
+            Console.WriteLine(" -Press 6 to Add Address Book");
+            Console.WriteLine(" -Press 7 to Display Address Book");
+            Console.WriteLine(" -Press 8 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -32,6 +34,7 @@ namespace AddressBookSystem
     public class AddBookManager
     {
         public static List<Person> People = new List<Person>();
+        public static Dictionary<string, List<Person>> Mydict = new Dictionary<string, List<Person>>();
 
         public static void AddPerson()
         {
@@ -206,6 +209,43 @@ namespace AddressBookSystem
             {
                 AddPerson();
                 num--;
+            }
+        }
+        public static void AddAddressBook()
+        {
+            bool flag = false;
+            while (flag != true)
+            {
+                Console.Write("Enter the Name of Address Book :");
+                string uniqname = Console.ReadLine();
+
+                if (Mydict.ContainsKey(uniqname))
+                {
+                    Console.WriteLine("{0} Address Book Already Exists. Try Different one..", uniqname);
+                    Console.WriteLine("Press any key to Continue ..");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                else
+                {
+                    Mydict.Add(uniqname, People);
+                    Console.WriteLine("Address Book Saved.");
+                    flag = true;
+                }
+            }
+               
+        }
+        public static void DisplayAddressBook()
+        {
+            Console.WriteLine("Here are current Address Book in System -");
+            foreach(var dict in Mydict)
+            {
+                
+                Console.WriteLine("-{0}",dict.Key);
+                Console.WriteLine("Press any key to comtinue..");
+                Console.ReadKey();
+                Console.Clear();
+                
             }
         }
     }
