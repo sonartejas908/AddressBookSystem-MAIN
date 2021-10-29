@@ -21,7 +21,8 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 2 to List Contact");
             Console.WriteLine(" -Press 3 to Edit Contact");
             Console.WriteLine(" -Press 4 to Delete Contact");
-            Console.WriteLine(" -Press 5 to Exit");
+            Console.WriteLine(" -Press 5 to Add Multiple Contact");
+            Console.WriteLine(" -Press 6 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -195,6 +196,17 @@ namespace AddressBookSystem
                 }
             }
 
+        }
+        public static void AddMultipleContact()
+        {
+            Console.Write("Specify number of Contcts to be Created :");
+            int num = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            while(num != 0)
+            {
+                AddPerson();
+                num--;
+            }
         }
     }
 }

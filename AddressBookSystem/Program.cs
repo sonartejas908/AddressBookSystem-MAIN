@@ -30,6 +30,9 @@ namespace AddressBookSystem
                             AddBookManager.RemovePerson();
                             break;
                         case 5:
+                            AddBookManager.AddMultipleContact();
+                        break;
+                        case 6:
                             isExit = true;
                             break;
                         default:
