@@ -22,10 +22,11 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 3 to Edit Contact");
             Console.WriteLine(" -Press 4 to Delete Contact");
             Console.WriteLine(" -Press 5 to Search Contact");
-            Console.WriteLine(" -Press 6 to Add Multiple Contact");
-            Console.WriteLine(" -Press 7 to Add Address Book");
-            Console.WriteLine(" -Press 8 to Display Address Book");
-            Console.WriteLine(" -Press 9 to Exit");
+            Console.WriteLine(" -Press 6 to View List by State or City");
+            Console.WriteLine(" -Press 7 to Add Multiple Contact");
+            Console.WriteLine(" -Press 8 to Add Address Book");
+            Console.WriteLine(" -Press 9 to Display Address Book");
+            Console.WriteLine(" -Press 10 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -294,6 +295,48 @@ namespace AddressBookSystem
             Console.ReadKey();
             Console.Clear();
                 
+        }
+        public static void DictCityorState()
+        {
+            Console.Write("Please enter 1  for City 2 for State :");
+            int response = Convert.ToInt32(Console.ReadLine());
+            if (response == 1)
+            {
+
+                Console.Write("Please enter city Name :");
+                string city = Console.ReadLine();
+                List<Person> CityList = new List<Person>();
+                foreach (Person person in People.FindAll(e => e.City.ToLower() == city.ToLower()))
+                {
+                    CityList.Add(person);
+                }
+                Mydict.Add(city, CityList);
+                foreach (var element in Mydict[city])
+                {
+                    PrintPerson(element);
+                }
+
+            }
+            else
+            {
+                Console.Write("Please enter State Name :");
+                string state = Console.ReadLine();
+                List<Person> Statelist = new List<Person>();
+                foreach (Person person in People.FindAll(e => e.State.ToLower() == state.ToLower()))
+                {
+                    Statelist.Add(person);
+                }
+                Mydict.Add(state,Statelist);
+
+                foreach(var element in Mydict[state])
+                {
+                    PrintPerson(element);
+                }
+
+            }
+            Console.WriteLine("Press any key to Continue ..");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
