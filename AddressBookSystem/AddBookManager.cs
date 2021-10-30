@@ -23,10 +23,11 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 4 to Delete Contact");
             Console.WriteLine(" -Press 5 to Search Contact");
             Console.WriteLine(" -Press 6 to View List by State or City");
-            Console.WriteLine(" -Press 7 to Add Multiple Contact");
-            Console.WriteLine(" -Press 8 to Add Address Book");
-            Console.WriteLine(" -Press 9 to Display Address Book");
-            Console.WriteLine(" -Press 10 to Exit");
+            Console.WriteLine(" -Press 7 to Count Contact by State or City");
+            Console.WriteLine(" -Press 8 to Add Multiple Contact");
+            Console.WriteLine(" -Press 9 to Add Address Book");
+            Console.WriteLine(" -Press 10 to Display Address Book");
+            Console.WriteLine(" -Press 11 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -315,6 +316,8 @@ namespace AddressBookSystem
                 {
                     PrintPerson(element);
                 }
+                int cityCount = Mydict[city].Count();
+                Console.WriteLine("Total :{0}",cityCount);
 
             }
             else
@@ -332,12 +335,15 @@ namespace AddressBookSystem
                 {
                     PrintPerson(element);
                 }
+                int stateCount = Mydict[state].Count;
+                Console.WriteLine("Total :{0}",stateCount);
 
             }
             Console.WriteLine("Press any key to Continue ..");
             Console.ReadKey();
             Console.Clear();
         }
+        
     }
 }
 

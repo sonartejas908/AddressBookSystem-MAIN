@@ -36,15 +36,18 @@ namespace AddressBookSystem
                             AddBookManager.DictCityorState();
                             break;
                         case 7:
-                            AddBookManager.AddMultipleContact();
+                            AddBookManager.DictCityorState();
                             break;
                         case 8:
-                        AddBookManager.AddAddressBook();
+                            AddBookManager.AddMultipleContact();
                             break;
                         case 9:
-                        AddBookManager.DisplayAddressBook();
+                        AddBookManager.AddAddressBook();
                             break;
                         case 10:
+                        AddBookManager.DisplayAddressBook();
+                            break;
+                        case 11:
                             isExit = true;
                             break;
                         default:
