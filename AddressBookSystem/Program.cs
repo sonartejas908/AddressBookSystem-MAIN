@@ -52,10 +52,13 @@ namespace AddressBookSystem
                         addBookManager.DisplayAddressBook();
                             break;
                         case 12:
-                            isExit = true;
+                        addBookManager.SortbyCityStateZip();
+                            break;
+                        case 13:
+                        isExit = true;
                             break;
                         default:
-                        Console.WriteLine("Please enter valid Input");
+                            Console.WriteLine("Please enter valid Input");
                             break;
                     }
 

@@ -28,7 +28,8 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 9 to Add Multiple Contact");
             Console.WriteLine(" -Press 10 to Add Address Book");
             Console.WriteLine(" -Press 11 to Display Address Book");
-            Console.WriteLine(" -Press 12 to Exit");
+            Console.WriteLine(" -Press 12 to Sort by City,State or ZipCode");
+            Console.WriteLine(" -Press 13 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -356,6 +357,59 @@ namespace AddressBookSystem
                 {
                     Console.WriteLine("No Contact present..");
                 }
+            }
+            Console.WriteLine("Press any key to Continue ..");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        public void SortbyCityStateZip()
+        {
+            Console.Write("\t[SORT]\n -Press 1 for City \n -Press 2 for State \n -Press 3 for ZipCode \n  Please Select :");
+            int response = Convert.ToInt32(Console.ReadLine());
+            switch (response)
+            {
+                case 1:
+                    foreach (var element in People.OrderBy(e => e.City).ToList())
+                    {
+                        if (People.Contains(element))
+                        {
+                            PrintPerson(element);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Contact present..");
+                        }
+                    }
+                    break;
+                case 2:
+                    foreach (var element in People.OrderBy(e => e.State).ToList())
+                    {
+                        if (People.Contains(element))
+                        {
+                            PrintPerson(element);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Contact present..");
+                        }
+                    }
+                    break;
+                case 3:
+                    foreach (var element in People.OrderBy(e => e.ZipCode).ToList())
+                    {
+                        if (People.Contains(element))
+                        {
+                            PrintPerson(element);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Contact present..");
+                        }
+                    }
+                    break;
+                default :
+                    Console.WriteLine("Choose valid Option...");
+                    break;
             }
             Console.WriteLine("Press any key to Continue ..");
             Console.ReadKey();
