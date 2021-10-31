@@ -6,48 +6,52 @@ namespace AddressBookSystem
     {
         static void Main(string[] args)
         {
-            WelcomeMessage.Welcome();
+            WelcomeMessage welcomeMessage = new WelcomeMessage();
+            AddBookManager addBookManager = new AddBookManager();
+            welcomeMessage.Welcome();
             bool isExit = false;
             while (isExit != true)
             {
-                WelcomeMessage.DisplayMsg();
+                welcomeMessage.DisplayMsg();
                 int response = Convert.ToInt32(Console.ReadLine());
                     Console.Clear();
 
                     switch (response)
                     {
                         case 1:
-                            AddBookManager.AddPerson();
-                            Console.WriteLine();
+                        addBookManager.AddPerson();
                             break;
                         case 2:
-                            AddBookManager.ListPeople();
+                           addBookManager.ListPeople();
                             break;
                         case 3:
-                            AddBookManager.Editperson();
+                           addBookManager.Editperson();
                             break;
                         case 4:
-                            AddBookManager.RemovePerson();
+                           addBookManager.RemovePerson();
                             break;
                         case 5:
-                            AddBookManager.SearchContactByCityorState();
+                           addBookManager.SearchContactByCityorState();
                             break;
                         case 6:
-                            AddBookManager.DictCityorState();
+                           addBookManager.SortContactbyName();
                             break;
                         case 7:
-                            AddBookManager.DictCityorState();
+                           addBookManager.DictCityorState();
                             break;
                         case 8:
-                            AddBookManager.AddMultipleContact();
+                           addBookManager.DictCityorState();
                             break;
                         case 9:
-                        AddBookManager.AddAddressBook();
+                            addBookManager.AddMultipleContact();
                             break;
                         case 10:
-                        AddBookManager.DisplayAddressBook();
+                       addBookManager.AddAddressBook();
                             break;
                         case 11:
+                        addBookManager.DisplayAddressBook();
+                            break;
+                        case 12:
                             isExit = true;
                             break;
                         default:

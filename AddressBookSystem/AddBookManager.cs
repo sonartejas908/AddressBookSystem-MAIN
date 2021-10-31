@@ -7,14 +7,14 @@ namespace AddressBookSystem
 {
     public class WelcomeMessage
     {
-        public static void Welcome()
+        public void Welcome()
         {
             Console.WriteLine("=====================================");
             Console.WriteLine("       Welcome To Address Book");
             Console.WriteLine("=====================================");
         }
 
-        public static void DisplayMsg()
+         public void DisplayMsg()
         {
             Console.WriteLine("\t---MAIN-WINDOW---\n\n  [Please Select]");
             Console.WriteLine(" -Press 1 to Add Contact");
@@ -22,12 +22,13 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 3 to Edit Contact");
             Console.WriteLine(" -Press 4 to Delete Contact");
             Console.WriteLine(" -Press 5 to Search Contact");
-            Console.WriteLine(" -Press 6 to View List by State or City");
-            Console.WriteLine(" -Press 7 to Count Contact by State or City");
-            Console.WriteLine(" -Press 8 to Add Multiple Contact");
-            Console.WriteLine(" -Press 9 to Add Address Book");
-            Console.WriteLine(" -Press 10 to Display Address Book");
-            Console.WriteLine(" -Press 11 to Exit");
+            Console.WriteLine(" -Press 6 to Sort Contact");
+            Console.WriteLine(" -Press 7 to View List by State or City");
+            Console.WriteLine(" -Press 8 to Count Contact by State or City");
+            Console.WriteLine(" -Press 9 to Add Multiple Contact");
+            Console.WriteLine(" -Press 10 to Add Address Book");
+            Console.WriteLine(" -Press 11 to Display Address Book");
+            Console.WriteLine(" -Press 12 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -36,10 +37,10 @@ namespace AddressBookSystem
 
     public class AddBookManager
     {
-        public static List<Person> People = new List<Person>();
-        public static Dictionary<string, List<Person>> Mydict = new Dictionary<string, List<Person>>();
+        public List<Person> People = new List<Person>();
+        public Dictionary<string, List<Person>> Mydict = new Dictionary<string, List<Person>>();
 
-        public static void AddPerson()
+        public void AddPerson()
         {
             bool flag = false;
             while (flag != true)
@@ -82,7 +83,7 @@ namespace AddressBookSystem
 
 
         }
-        private static void PrintPerson(Person person)
+        private void PrintPerson(Person person)
         {
             Console.WriteLine("First Name :" + person.Fname);
             Console.WriteLine("Last Name :" + person.Lname);
@@ -94,7 +95,7 @@ namespace AddressBookSystem
             Console.WriteLine("Email :" + person.Email);
             Console.WriteLine("-------------------------------------");
         }
-        public static void ListPeople()
+        public void ListPeople()
         {
             if (People.Count == 0)
             {
@@ -115,7 +116,7 @@ namespace AddressBookSystem
             Console.Clear();
 
         }
-        public static void Editperson()
+        public void Editperson()
         {
             Console.WriteLine("\t[Edit Contact]");
             Console.WriteLine("Enter the First name of person you wants to Edit");
@@ -189,7 +190,7 @@ namespace AddressBookSystem
             }
 
         }
-        public static void RemovePerson()
+        public void RemovePerson()
         {
             Console.WriteLine("\t[Remove Contact]");
             Console.WriteLine("Enter the First name of person you wants to remove");
@@ -218,7 +219,7 @@ namespace AddressBookSystem
             }
 
         }
-        public static void AddMultipleContact()
+        public void AddMultipleContact()
         {
             Console.Write("Specify number of Contcts to be Created :");
             int num = Convert.ToInt32(Console.ReadLine());
@@ -229,7 +230,7 @@ namespace AddressBookSystem
                 num--;
             }
         }
-        public static void AddAddressBook()
+        public void AddAddressBook()
         {
             bool flag = false;
             while (flag != true)
@@ -253,7 +254,7 @@ namespace AddressBookSystem
             }
                
         }
-        public static void DisplayAddressBook()
+        public void DisplayAddressBook()
         {
             Console.WriteLine("Here are current Address Book in System -");
             foreach(var dict in Mydict)
@@ -266,7 +267,7 @@ namespace AddressBookSystem
                 
             }
         }
-        public static void SearchContactByCityorState()
+        public void SearchContactByCityorState()
         {
             Console.Write("Please enter 1  for City 2 for State :");
             int response = Convert.ToInt32(Console.ReadLine());
@@ -297,7 +298,7 @@ namespace AddressBookSystem
             Console.Clear();
                 
         }
-        public static void DictCityorState()
+        public void DictCityorState()
         {
             Console.Write("Please enter 1  for City 2 for State :");
             int response = Convert.ToInt32(Console.ReadLine());
@@ -338,6 +339,23 @@ namespace AddressBookSystem
                 int stateCount = Mydict[state].Count;
                 Console.WriteLine("Total :{0}",stateCount);
 
+            }
+            Console.WriteLine("Press any key to Continue ..");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        public void SortContactbyName()
+        {
+            foreach(var element in People.OrderBy(e => e.Fname).ToList())
+            {
+                if(People.Contains(element))
+                {
+                    PrintPerson(element);
+                }
+                else
+                {
+                    Console.WriteLine("No Contact present..");
+                }
             }
             Console.WriteLine("Press any key to Continue ..");
             Console.ReadKey();
