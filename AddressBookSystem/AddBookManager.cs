@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -29,7 +30,8 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 10 to Add Address Book");
             Console.WriteLine(" -Press 11 to Display Address Book");
             Console.WriteLine(" -Press 12 to Sort by City,State or ZipCode");
-            Console.WriteLine(" -Press 13 to Exit");
+            Console.WriteLine(" -Press 13 to Export Contact");
+            Console.WriteLine(" -Press 14 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -415,7 +417,22 @@ namespace AddressBookSystem
             Console.ReadKey();
             Console.Clear();
         }
-        
+        public void WriteUsingStreamWriter()
+        {
+            String path = @"C:\Users\User\source\repos\AddressBookSystemSub\AddressBookSystem-MAIN\AddressBookSystem\ContactList.txt";
+            foreach(var element in People)
+            {
+                using (StreamWriter sr = File.AppendText(path))
+                {
+                    sr.WriteLine("First Name :{0}\nLast Name :{1}\nAddress :{2}\nCity :{3}\nState :{4}\nZip Code :{5}\nPhone Number :{6}\nEmail :{7}",element.Fname,element.Lname,element.Address,element.City,element.State,element.ZipCode,element.PhonNumber,element.Email);
+                    sr.Close();
+                }
+
+            }
+
+            
+        }
+
     }
 }
 

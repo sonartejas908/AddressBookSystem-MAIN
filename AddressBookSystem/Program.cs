@@ -55,7 +55,10 @@ namespace AddressBookSystem
                         addBookManager.SortbyCityStateZip();
                             break;
                         case 13:
-                        isExit = true;
+                            addBookManager.WriteUsingStreamWriter();
+                            break;
+                        case 14:
+                            isExit = true;
                             break;
                         default:
                             Console.WriteLine("Please enter valid Input");
