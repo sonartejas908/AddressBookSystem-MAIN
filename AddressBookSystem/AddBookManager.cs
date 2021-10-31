@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,7 +17,7 @@ namespace AddressBookSystem
             Console.WriteLine("=====================================");
         }
 
-         public void DisplayMsg()
+        public void DisplayMsg()
         {
             Console.WriteLine("\t---MAIN-WINDOW---\n\n  [Please Select]");
             Console.WriteLine(" -Press 1 to Add Contact");
@@ -30,8 +32,9 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 10 to Add Address Book");
             Console.WriteLine(" -Press 11 to Display Address Book");
             Console.WriteLine(" -Press 12 to Sort by City,State or ZipCode");
-            Console.WriteLine(" -Press 13 to Export Contact");
-            Console.WriteLine(" -Press 14 to Exit");
+            Console.WriteLine(" -Press 13 to Export Contact to Txt file");
+            Console.WriteLine(" -Press 14 to Export Contact to CSV file");
+            Console.WriteLine(" -Press 15 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -227,7 +230,7 @@ namespace AddressBookSystem
             Console.Write("Specify number of Contcts to be Created :");
             int num = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
-            while(num != 0)
+            while (num != 0)
             {
                 AddPerson();
                 num--;
@@ -255,30 +258,30 @@ namespace AddressBookSystem
                     flag = true;
                 }
             }
-               
+
         }
         public void DisplayAddressBook()
         {
             Console.WriteLine("Here are current Address Book in System -");
-            foreach(var dict in Mydict)
+            foreach (var dict in Mydict)
             {
-                
-                Console.WriteLine("-{0}",dict.Key);
+
+                Console.WriteLine("-{0}", dict.Key);
                 Console.WriteLine("Press any key to comtinue..");
                 Console.ReadKey();
                 Console.Clear();
-                
+
             }
         }
         public void SearchContactByCityorState()
         {
             Console.Write("Please enter 1  for City 2 for State :");
             int response = Convert.ToInt32(Console.ReadLine());
-            if(response == 1)
+            if (response == 1)
             {
                 Console.Write("Enter City Name :");
                 string city = Console.ReadLine();
-                foreach(Person person in People.FindAll(e =>e.City.ToLower() == city.ToLower()))
+                foreach (Person person in People.FindAll(e => e.City.ToLower() == city.ToLower()))
                 {
                     PrintPerson(person);
 
@@ -299,7 +302,7 @@ namespace AddressBookSystem
             Console.WriteLine("Press any key to continue..");
             Console.ReadKey();
             Console.Clear();
-                
+
         }
         public void DictCityorState()
         {
@@ -321,7 +324,7 @@ namespace AddressBookSystem
                     PrintPerson(element);
                 }
                 int cityCount = Mydict[city].Count();
-                Console.WriteLine("Total :{0}",cityCount);
+                Console.WriteLine("Total :{0}", cityCount);
 
             }
             else
@@ -333,14 +336,14 @@ namespace AddressBookSystem
                 {
                     Statelist.Add(person);
                 }
-                Mydict.Add(state,Statelist);
+                Mydict.Add(state, Statelist);
 
-                foreach(var element in Mydict[state])
+                foreach (var element in Mydict[state])
                 {
                     PrintPerson(element);
                 }
                 int stateCount = Mydict[state].Count;
-                Console.WriteLine("Total :{0}",stateCount);
+                Console.WriteLine("Total :{0}", stateCount);
 
             }
             Console.WriteLine("Press any key to Continue ..");
@@ -349,9 +352,9 @@ namespace AddressBookSystem
         }
         public void SortContactbyName()
         {
-            foreach(var element in People.OrderBy(e => e.Fname).ToList())
+            foreach (var element in People.OrderBy(e => e.Fname).ToList())
             {
-                if(People.Contains(element))
+                if (People.Contains(element))
                 {
                     PrintPerson(element);
                 }
@@ -409,7 +412,7 @@ namespace AddressBookSystem
                         }
                     }
                     break;
-                default :
+                default:
                     Console.WriteLine("Choose valid Option...");
                     break;
             }
@@ -420,19 +423,29 @@ namespace AddressBookSystem
         public void WriteUsingStreamWriter()
         {
             String path = @"C:\Users\User\source\repos\AddressBookSystemSub\AddressBookSystem-MAIN\AddressBookSystem\ContactList.txt";
-            foreach(var element in People)
+            foreach (var element in People)
             {
                 using (StreamWriter sr = File.AppendText(path))
                 {
-                    sr.WriteLine("First Name :{0}\nLast Name :{1}\nAddress :{2}\nCity :{3}\nState :{4}\nZip Code :{5}\nPhone Number :{6}\nEmail :{7}",element.Fname,element.Lname,element.Address,element.City,element.State,element.ZipCode,element.PhonNumber,element.Email);
+                    sr.WriteLine("First Name :{0}\nLast Name :{1}\nAddress :{2}\nCity :{3}\nState :{4}\nZip Code :{5}\nPhone Number :{6}\nEmail :{7}", element.Fname, element.Lname, element.Address, element.City, element.State, element.ZipCode, element.PhonNumber, element.Email);
                     sr.Close();
                 }
 
             }
 
-            
-        }
 
+        }
+        public void WriteUsingCSVwriter()
+        {
+            String path = @"C:\Users\User\source\repos\AddressBookSystemSub\AddressBookSystem-MAIN\AddressBookSystem\ContactListCSV.csv";
+          
+                using StreamWriter sr = new StreamWriter(path);
+                using (var csvExport = new CsvWriter(sr,CultureInfo.InvariantCulture))
+                {
+                    csvExport.WriteRecords(People);
+                }
+
+        }
     }
 }
 
