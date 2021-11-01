@@ -1,10 +1,13 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace AddressBookSystem
 {
@@ -34,7 +37,8 @@ namespace AddressBookSystem
             Console.WriteLine(" -Press 12 to Sort by City,State or ZipCode");
             Console.WriteLine(" -Press 13 to Export Contact to Txt file");
             Console.WriteLine(" -Press 14 to Export Contact to CSV file");
-            Console.WriteLine(" -Press 15 to Exit");
+            Console.WriteLine(" -Press 15 to Export Contact to Json file");
+            Console.WriteLine(" -Press 16 to Exit");
             Console.WriteLine();
             Console.Write(" Enter choise :");
         }
@@ -445,6 +449,16 @@ namespace AddressBookSystem
                     csvExport.WriteRecords(People);
                 }
 
+        }
+        public void WriteUsingJsonWriter()
+        {
+            string path = @"C:\Users\User\source\repos\AddressBookSystemSub\AddressBookSystem-MAIN\AddressBookSystem\ContactList-Json.csv";
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamWriter sw = new StreamWriter(path))
+            using (JsonWriter writer = new JsonTextWriter(sw))
+            {
+                serializer.Serialize(writer, People);
+            }
         }
     }
 }

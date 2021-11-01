@@ -61,6 +61,9 @@ namespace AddressBookSystem
                             addBookManager.WriteUsingCSVwriter();
                             break;
                         case 15:
+                            addBookManager.WriteUsingJsonWriter();
+                            break;
+                        case 16:
                             isExit = true;
                             break;
                         default:
